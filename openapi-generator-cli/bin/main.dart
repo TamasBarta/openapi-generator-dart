@@ -18,9 +18,8 @@ void main(List<String> arguments) async {
   if (javaOpts.isNotEmpty) {
     commands.insert(0, javaOpts);
   }
-  await Process.run('java', commands).then((ProcessResult pr) {
-    print(pr.exitCode);
-    print(pr.stdout);
-    print(pr.stderr);
-  });
+  final pr = await Process.run('java', commands);
+  exitCode = pr.exitCode;
+  print(pr.stdout);
+  stderr.write(pr.stderr);
 }
